@@ -1,0 +1,14 @@
+
+Bienvenida al juego de Hangman
+Damos la versión
+
+Preguntamos si quiere jugar 1 jugador o 2 jugadores 
+La version de 2 jugadores es 1 contra otro
+
+Elegida la opción 
+Ingresamos 1 jugador o 2 
+
+Aclaramos que se tienen 7 oportunidad de fallo y que cuando llega a 0 se pierde.
+En la versión de 2 jugadores el que empieza pierde el turno al errar una letra y se juega hasta que uno adivina la película
+
+Los nombres están en ingles
