@@ -69,8 +69,9 @@ def opcion_inicio():
             un_jugador()
             break
         elif opcion == "2":
-            print(2)
-            break
+            print("La versión de 2 jugadores será la Versión 2.0")
+            visitante = Jugador("Visitante")
+            jugar_again(visitante)
         elif opcion == "a" or opcion == "A":
             desplegar_ayuda()
             break
@@ -154,8 +155,8 @@ def ingreso_nombre():
 ## elegir pelicula
 def elegir_pelicula(jugador1):
     pelis = ['Black Panther: Wakanda Forever', 'The Menu', 'Black Adam', "Don't Worry Darling", 'Disenchanted', 'Where the Crawdads Sing', 'Smile', 'Falling for Christmas', 'The Wonder', 'Spirited', 'A Christmas Story Christmas', 'Enola Holmes 2', 'Weird: The Al Yankovic Story', 'All Quiet on the Western Front', 'Barbarian', 'Amsterdam', 'Poker Face', 'Black Panther', 'The Whale', 'Bullet Train', 'Terrifier 2', 'The Banshees of Inisherin', 'John Wick: Chapter 4', 'The Fabelmans', 'A Christmas Story', 'Bones and All', 'The Good Nurse', 'Tár', 'Slumberland', 'Glass Onion: A Knives Out Mystery', 'Enola Holmes', 'See How They Run', 'Top Gun: Maverick', 'Monica, O My Darling', 'Avatar: The Way of Water', 'X', 'Enchanted', 'My Policeman', 'R.I.P.D. 2: Rise of the Damned', 'Nope', 'She Said', 'Pearl', 'Ticket to Paradise', 'Elemental', 'The Woman King', 'Everything Everywhere All at Once', 'Babylon', 'Triangle of Sadness', 'Thor: Love and Thunder', 'Kantara', 'Terrifier', "Magic Mike's Last Dance", 'Paradise City', 'Violent Night', 'The School for Good and Evil', 'The People We Hate at the Wedding', 'The Batman', 'The Godfather', 'Causeway', 'The Bad Guys', 'Stutz', 'Top Gun', 'The Northman', 'Strange World', 'Fall', "Guillermo del Toro's Pinocchio", 'Emily', 'Yashoda', 'Home Alone', 'Empire of Light', 'Knives Out', 'Armageddon Time', 'The Shawshank Redemption', 'Lamborghini: The Man Behind the Legend', 'The Stranger', 'Chariots of Fire', 'Medieval', 'One Piece Film: Red', "Harry Potter and the Sorcerer's Stone", 'Avatar', 'Christmas with You', 'Aftersun', 'Elvis', 'Uunchai', "National Lampoon's Christmas Vacation", 'The Santa Clause', 'Spider-Man: No Way Home', 'Midsommar', 'Lost Bullet 2: Back for More', 'Interstellar', 'Call Jane', 'Luckiest Girl Alive', 'On the Line', 'American Psycho', 'Dune', 'Uncharted', 'Rogue One: A Star Wars Story', 'Lost Bullet', 'Once Upon a Time in Hollywood', 'Avengers: Endgame']
-    # partida = Partida_un_jugador(pelis[random.randint(0, 99)], jugador1)
-    partida = Partida_un_jugador("R.I.P.D. 2: Rise of the Damned", jugador1)
+    partida = Partida_un_jugador(pelis[random.randint(0, 99)], jugador1)
+    # partida = Partida_un_jugador("Hello", jugador1)
     empezar_juego(partida, jugador1)
     
 ## empezar juego
@@ -165,6 +166,22 @@ def empezar_juego(partida, jugador1):
     partida.presentar_pelicula()
     
     adivinar_letra(partida, jugador1)
+
+## jugar de nuevo
+def jugar_again(jugador1):
+    opciones = ["j", "J", "o", "O", "s", "S"]
+    while True:
+        again = input("Si deseas jugar de nuevo ingresa (J), si otra persona quiere jugar ingresa (O) o si deseas salir ingresa (S).")
+        if again in opciones:
+            break
+    if again == "j" or again == "J":
+        elegir_pelicula(jugador1)
+    elif again == "o" or again == "O":
+        cls()
+        banner_inicio()
+        opcion_inicio()
+    else:
+        salir(jugador1)
 
 ## validar letra
 def validar_letra(letra):
@@ -197,7 +214,12 @@ def adivinar_letra(partida, jugador1):
                 cls()
                 banner_juego_1()
                 partida.presentar_pelicula()
-                print("Ganó!")
+                print("""
+**********************************************************************
+***   F E L I C I T A C I O N E S  -   H A S    G A N A D O ! ! !  ***
+**********************************************************************
+                """)
+                print("\nMuy bien {}, has adivinado una película difícil!\n".format(jugador1.nombre))
                 break
             
             if partida.intentos_restantes == 0:
@@ -208,8 +230,24 @@ def adivinar_letra(partida, jugador1):
                 print("{} \n".format(partida.pelicula_text))
                 break
             
+    jugar_again(jugador1)
             
-        
+## salir
+def salir(jugador):
+    cls()
+    print("""
+******************************************************************
+****                                                          ****
+****             T H E   H A N G M A N   G A M E              ****
+****                                                          ****
+******************************************************************
+      
+    ========================================================
+    ==  M U C H A S   G R A C I A S   P O R   J U G A R   ==
+    ========================================================           
+      """)
+    print("\n\nNos vemos pronto {}!\n\n".format(jugador.nombre))
+       
         
 
     
